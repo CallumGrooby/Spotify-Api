@@ -68,19 +68,6 @@ Navigate to `http://localhost:3000` in your browser.
 
 ---
 
-## 🤝 Contributing
-
-Feel free to fork the repo and submit pull requests to improve features, UI/UX, or API integrations.
-
-Ideas for enhancement:
-
-- Dark mode toggle
-- Add audio previews
-- Pagination and infinite scrolling
-- Offline storage/cache
-
----
-
 ## ⚖ License
 
 MIT © Callum Grooby
