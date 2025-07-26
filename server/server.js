@@ -25,37 +25,20 @@ app.get("/login", (req, res) => {
     "streaming",
   ];
 
-  res.redirect(spotifyApi.createAuthorizeURL(scopes));
+  res.redirect(spotifyApi.createAuthorizeURL(scopes, null, true));
 });
 
-app.get("/callback", (req, res) => {
-  const error = req.query.error;
-  const code = req.query.code;
+spotifyApi.authorizationCodeGrant(code).then((data) => {
+  const accessToken = data.body.access_token;
+  const refreshToken = data.body.refresh_token;
+  const expiresIn = data.body.expires_in;
+  const scope = data.body.scope; // ← log this
 
-  if (error) {
-    console.error(error);
-    res.send(`Error authentication failed ${error}`);
-    return;
-  }
+  console.log("Granted scopes:", scope);
 
-  spotifyApi
-    .authorizationCodeGrant(code)
-    .then((data) => {
-      const accessToken = data.body.access_token;
-      const refreshToken = data.body.refresh_token;
-      const expiresIn = data.body.expires_in;
-
-      // res.json({ accessToken, refreshToken, expiresIn });
-
-      // Redirect to frontend with tokens as URL params
-      res.redirect(
-        `http://localhost:5173?access_token=${accessToken}&refresh_token=${refreshToken}&expires_in=${expiresIn}`
-      );
-    })
-    .catch((err) => {
-      console.error("Error retrieving access token", err);
-      res.send("Error retrieving access token");
-    });
+  res.redirect(
+    `http://localhost:5173?access_token=${accessToken}&refresh_token=${refreshToken}&expires_in=${expiresIn}`
+  );
 });
 
 app.get("/search", (req, res) => {

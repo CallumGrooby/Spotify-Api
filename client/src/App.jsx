@@ -9,10 +9,6 @@ import { TopArtistsPage } from "./pages/TopArtistsPage";
 import { TopSongsPage } from "./pages/TopSongsPage";
 import { TokenProvider } from "./ults/tokenProvider";
 function App() {
-  // const logout = () => {
-  //   setToken("");
-  //   window.localStorage.removeItem("token");
-  // };const urlParams = new URLSearchParams(window.location.search);
   const [accessToken, setAccessToken] = useState("");
   const [refreshToken, setRefreshToken] = useState("");
   const [expirersTime, setexpiresTime] = useState("");
