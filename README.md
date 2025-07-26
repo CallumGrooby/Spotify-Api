@@ -18,7 +18,7 @@ An app that allows users to authenticate via Spotify, search for music, and disp
 
 ## 📸 Screenshot
 
-
+![Screenshot](./assets/screenshot.png)
 
 ---
 
